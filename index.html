@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhisperWall</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>WHISPER WALL</h1>
+        <p class="subtitle">Confess anonymously.</p>
+        <p class="hint-text">Hold to react</p>
+    </header>
+
+    <div class="input-wrapper">
+        <textarea id="confessionText" placeholder="What is your secret?"></textarea>
+        
+        <div id="previewContainer">
+            <span>Sticker:</span>
+            <img id="previewImg" src="">
+            <span style="cursor:pointer; text-decoration:underline;" onclick="clearSticker()">Remove</span>
+        </div>
+
+        <div class="action-row">
+            <button class="btn-sticker" onclick="toggleDrawer()">☺</button>
+            <button class="btn-post" id="postBtn">Post Secret</button>
+        </div>
+
+        <div id="stickerDrawer"></div>
+    </div>
+
+    <div id="feed">
+        <p style="text-align:center; color: #555;">Loading whispers...</p>
+    </div>
+
+    <footer>
+        <div class="copyright">&copy; <span id="year"></span> Synz</div>
+        <span class="admin-link" onclick="adminClear()">Admin Panel</span>
+    </footer>
+
+<script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+        /* --- WHISPER WALL DARK THEME --- */
+        :root {
+            --bg: #0f172a;           
+            --card-bg: #1e293b;      
+            --text-main: #e2e8f0;    
+            --text-dim: #94a3b8;     
+            --accent: #8b5cf6;       
+            --accent-hover: #7c3aed;
+            --my-color: #10b981;     
+            --active-reaction: #ffffff; 
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            -webkit-user-select: none; 
+            user-select: none;
+        }
+
+        header { text-align: center; margin-bottom: 30px; }
+        h1 { margin: 0; font-weight: 300; letter-spacing: 2px; color: var(--text-main); }
+        
+        .subtitle { 
+            color: var(--text-dim); 
+            font-size: 0.9rem; 
+            margin-top: 5px; 
+            margin-bottom: 5px;
+        }
+        
+        .hint-text {
+            color: #64748b;
+            font-size: 0.75rem;
+            opacity: 0.8;
+            letter-spacing: 0.5px;
+        }
+
+        /* INPUT AREA */
+        .input-wrapper {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            margin-bottom: 30px;
+            border: 1px solid #334155;
+        }
+
+        textarea {
+            width: 100%;
+            height: 80px;
+            background: #0f172a;
+            border: 1px solid #334155;
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            resize: none;
+            box-sizing: border-box;
+            font-family: inherit;
+            margin-bottom: 10px;
+            outline: none;
+        }
+        textarea:focus { border-color: var(--accent); }
+
+        .action-row { display: flex; gap: 10px; }
+        button { border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: bold; transition: 0.2s; }
+        .btn-post { background-color: var(--accent); color: white; flex-grow: 1; }
+        .btn-post:hover { background-color: var(--accent-hover); }
+        .btn-sticker { background-color: #334155; color: #fff; width: 50px; font-size: 1.2rem; }
+        .btn-sticker:hover { background-color: #475569; }
+
+        /* STICKER DRAWER */
+        #stickerDrawer {
+            display: none;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+            background: #0f172a;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .sticker-option { width: 100%; cursor: pointer; border-radius: 4px; padding: 5px; box-sizing: border-box;}
+        .sticker-option:hover { background: #1e293b; }
+        .sticker-option.selected { border: 2px solid var(--accent); background: #1e293b; }
+
+        #previewContainer { display: none; margin-bottom: 10px; align-items: center; gap: 10px; font-size: 0.85rem; color: var(--text-dim); }
+        #previewImg { width: 40px; height: 40px; object-fit: contain; }
+
+        /* FEED */
+        #feed { width: 100%; max-width: 500px; flex-grow: 1; padding-bottom: 40px; }
+
+        .card {
+            background: var(--card-bg);
+            padding: 20px 20px 30px 20px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+        
+        .card.mine { border-left: 4px solid var(--my-color); }
+        .card:active { transform: scale(0.98); background: #253146; }
+
+        .meta { font-size: 0.75rem; color: var(--text-dim); margin-bottom: 8px; }
+        .you-tag { color: var(--my-color); font-weight: bold; margin-left: 5px; }
+        .posted-sticker { display: block; max-width: 100px; margin-top: 12px; border-radius: 6px; }
+
+        /* --- THE POPUP MENU --- */
+        .reaction-popup {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%) scale(0);
+            background: #fff;
+            padding: 8px 15px;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            display: flex;
+            gap: 15px;
+            z-index: 100;
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: none;
+        }
+
+        .reaction-popup.visible {
+            transform: translateX(-50%) scale(1);
+            pointer-events: auto;
+        }
+
+        .reaction-popup::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #fff transparent transparent transparent;
+        }
+
+        .emoji-btn {
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+            user-select: none;
+            border-radius: 50%;
+            padding: 2px;
+        }
+        .emoji-btn:hover { transform: scale(1.3); }
+        .emoji-btn.active-choice { background-color: #bfdbfe; box-shadow: 0 0 10px #bfdbfe; }
+
+        /* --- ICONS AT BOTTOM --- */
+        .reaction-display {
+            position: absolute;
+            bottom: -10px;
+            right: 15px;
+            background: #334155;
+            color: #fff;
+            border-radius: 20px;
+            padding: 4px 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            font-size: 0.8rem;
+            display: flex;
+            gap: 5px;
+            border: 2px solid var(--bg);
+        }
+        
+        .reaction-display span.my-reaction { color: var(--active-reaction); font-weight: bold; }
+        .reaction-display:empty { display: none; }
+
+        footer { margin-top: 50px; text-align: center; padding-bottom: 20px; }
+        .copyright { color: var(--text-dim); font-size: 0.9rem; font-weight: 500; }
+        .admin-link { display: block; margin-top: 8px; font-size: 0.75rem; color: #334155; cursor: pointer; text-decoration: none; }
+        .admin-link:hover { color: #ef4444; }
