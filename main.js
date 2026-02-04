@@ -1,4 +1,3 @@
- type="module"
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
         import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp, getDocs, deleteDoc, doc, updateDoc, arrayUnion, arrayRemove, limit } 
         from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
